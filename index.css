@@ -1,0 +1,220 @@
+/* ===== Base Reset & Layout ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #e0eafc, #cfdef3);
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Default Light Theme */
+body.light {
+  background-color: #f5f5f5;
+  color: #000;
+}
+body.light label {
+  color: black;
+  font-weight: 600; /* Override to white in dark mode */
+}
+
+
+body.dark {
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+body.dark #controls {
+  background-color: #222;
+}
+
+body.light #controls {
+  background-color: #eee;
+}
+
+body.dark select,
+body.dark input[type="text"],
+body.dark input[type="number"] {
+  background-color: #333;
+  color: white;
+}
+
+body.light select,
+body.light input[type="text"],
+body.light input[type="number"] {
+  background-color: white;
+  color: black;
+}
+
+/* ====== Control Panel ====== */
+#controls {
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+  color: #fff;
+  justify-content: space-evenly;
+}
+ 
+#controls > div {
+  padding: 8px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+#controls > div:hover {
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* ===== Buttons ===== */
+button {
+  background: #e0e0e0;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff;
+  padding: 10px 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  box-shadow: inset 5px 5px 10px #bebebe, inset -5px -5px 10px #ffffff;
+  transform: scale(0.98);
+}
+
+body.dark button {
+  background: #2b2b2b;
+  color: white;
+  box-shadow: 5px 5px 10px #1a1a1a, -5px -5px 10px #3c3c3c;
+}
+
+body.dark button:hover {
+  box-shadow: inset 5px 5px 10px #1a1a1a, inset -5px -5px 10px #3c3c3c;
+}
+
+/* ===== Inputs ===== */
+input[type="color"],
+input[type="range"],
+input[type="text"],
+input[type="number"] {
+  padding: 5px;
+  border-radius: 8px;
+  border: none;
+  box-shadow: inset 2px 2px 4px rgba(0,0,0,0.2),
+              inset -2px -2px 4px rgba(255,255,255,0.1);
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+input[type="color"] {
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+}
+
+input[type="range"] {
+  width: 120px;
+  accent-color: #6c63ff;
+}
+
+input[type="text"],
+input[type="number"] {
+  width: 120px;
+  text-align: center;
+}
+
+/* ===== Dropdown Selector ===== */
+select {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 16px;
+  margin: 5px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+}
+
+select:hover {
+  background-color: #3e8e41;
+  transform: scale(1.05);
+}
+
+/* ===== Canvas and Mouse Area ===== */
+#mouseArea {
+  width: 100%;
+  max-width: 1250px;
+  height: 600px;
+  margin: 0 auto;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  background-color: white;
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+  border: 2px solid black;
+  border-radius: 20px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  cursor: crosshair;
+}
+
+/* ===== Red Cursor Dot ===== */
+#pointer {
+  width: 12px;
+  height: 12px;
+  background-color: red;
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+  #controls {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  input[type="range"],
+  select {
+    width: 90%;
+  }
+
+  canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  #mouseArea {
+    height: auto;
+    aspect-ratio: 4/3;
+  }
+}
